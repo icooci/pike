@@ -177,7 +177,7 @@ listen-peer-urls: http://0.0.0.0:2380
 listen-client-urls: http://192.168.1.11:2379
 ```
 
-创建配置服务文件
+创建并配置服务文件
 > vi /lib/systemd/system/etcd.service
 ```
 [Unit]
@@ -196,5 +196,5 @@ WantedBy=multi-user.target
 ```
 
 启用etcd服务
-> systemctl enable etcd
-> systemctl start etcd
+> systemctl enable etcd  
+> systemctl start etcd  
