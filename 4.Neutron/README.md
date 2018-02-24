@@ -196,6 +196,16 @@ metadata_proxy_shared_secret = asd
 > su -s /bin/sh -c "neutron-db-manage --config-file /etc/neutron/neutron.conf \
   --config-file /etc/neutron/plugins/ml2/ml2_conf.ini upgrade head" neutron
 
+> su -s /bin/sh -c "neutron-db-manage --config-file /etc/neutron/neutron.conf \
+>  --config-file /etc/neutron/plugins/ml2/ml2_conf.ini upgrade head" neutron
+  
+> su -s /bin/sh -c "neutron-db-manage --config-file /etc/neutron/neutron.conf  --config-file /etc/neutron/plugins/ml2/ml2_conf.ini upgrade head" neutron
+
+```
+su -s /bin/sh -c "neutron-db-manage --config-file /etc/neutron/neutron.conf \
+  --config-file /etc/neutron/plugins/ml2/ml2_conf.ini upgrade head" neutron
+```
+
 重启nova-api服务
 > service nova-api restart
 
