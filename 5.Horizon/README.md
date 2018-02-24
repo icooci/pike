@@ -319,7 +319,7 @@ ALLOWED_PRIVATE_SUBNET_CIDR = {'ipv4': [], 'ipv6': []}
 
 修改apache配置
 
-> /etc/apache2/conf-available/openstack-dashboard.conf
+> vi /etc/apache2/conf-available/openstack-dashboard.conf
 ```diff
 + WSGIApplicationGroup %{GLOBAL}
 ```
