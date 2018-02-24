@@ -318,7 +318,20 @@ password = asd
 ```
 
 重启nova-compute服务
-service nova-compute restart
+> service nova-compute restart
 
 重启neutron服务
-service neutron-linuxbridge-agent restart
+> service neutron-linuxbridge-agent restart
+
+验证操作
+---
+
+在控制节点上进行验证操作
+
+加载admin变量
+
+> . admin-openrc
+
+查看网络组件运行情况
+
+> openstack network agent list
