@@ -135,3 +135,20 @@ character-set-server = utf8
 + -l 192.168.1.11
 ```
 > service memcached restart
+
+**控制节点安装Etcd**
+
+创建etcd用户
+
+> groupadd --system etcd
+
+> useradd --home-dir "/var/lib/etcd" --system --shell /bin/false -g etcd etcd
+
+创建相关目录
+
+> mkdir -p /etc/etcd  
+> chown etcd:etcd /etc/etcd  
+> mkdir -p /var/lib/etcd  
+> chown etcd:etcd /var/lib/etcd  
+
+
