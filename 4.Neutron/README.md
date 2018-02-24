@@ -31,6 +31,8 @@ EXIT;
 > openstack endpoint create --region RegionOne network internal http://192.168.1.11:9696  
 > openstack endpoint create --region RegionOne network admin http://192.168.1.11:9696  
 
+<br />
+
 网络类型: Self-service 网络
 ---
 
@@ -146,7 +148,7 @@ interface_driver = linuxbridge
 [ovs]
 ```
 编辑dhcp_agent配置
-> /etc/neutron/dhcp_agent.ini
+> vi /etc/neutron/dhcp_agent.ini
 ```
 [DEFAULT]
 interface_driver = linuxbridge
@@ -174,8 +176,8 @@ metadata_proxy_shared_secret = asd
 > vi /etc/nova/nova.conf
 
 ```bash
-..+
 [neutron]
+# ...
 url = http://192.168.1.11:9696
 auth_url = http://192.168.1.11:35357
 auth_type = password
@@ -190,4 +192,6 @@ metadata_proxy_shared_secret = asd
 ```
 
 初始化neutron数据库
-> su -s /bin/sh -c "neutron-db-manage --config-file /etc/neutron/neutron.conf --config-file /etc/neutron/plugins/ml2/ml2_conf.ini upgrade head" neutron
+
+> su -s /bin/sh -c "neutron-db-manage --config-file /etc/neutron/neutron.conf \
+  --config-file /etc/neutron/plugins/ml2/ml2_conf.ini upgrade head" neutron
