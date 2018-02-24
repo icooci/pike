@@ -84,8 +84,6 @@ keystone-manage bootstrap --bootstrap-password asd \
 ```
 
 **配置apache服务器**
----
-
 
 ---
 
