@@ -194,18 +194,8 @@ metadata_proxy_shared_secret = asd
 
 初始化neutron数据库
 
-> su -s /bin/sh -c "neutron-db-manage --config-file /etc/neutron/neutron.conf \
-  --config-file /etc/neutron/plugins/ml2/ml2_conf.ini upgrade head" neutron
-
-> su -s /bin/sh -c "neutron-db-manage --config-file /etc/neutron/neutron.conf \
->  --config-file /etc/neutron/plugins/ml2/ml2_conf.ini upgrade head" neutron
-  
 > su -s /bin/sh -c "neutron-db-manage --config-file /etc/neutron/neutron.conf  --config-file /etc/neutron/plugins/ml2/ml2_conf.ini upgrade head" neutron
 
-```
-su -s /bin/sh -c "neutron-db-manage --config-file /etc/neutron/neutron.conf \
-  --config-file /etc/neutron/plugins/ml2/ml2_conf.ini upgrade head" neutron
-```
 
 重启nova-api服务
 > service nova-api restart
@@ -230,6 +220,16 @@ su -s /bin/sh -c "neutron-db-manage --config-file /etc/neutron/neutron.conf \
 查看网络组件运行情况
 
 > openstack network agent list
+```
++--------------------------------------+--------------------+------------+-------------------+-------+-------+---------------------------+
+| ID                                   | Agent Type         | Host       | Availability Zone | Alive | State | Binary                    |
++--------------------------------------+--------------------+------------+-------------------+-------+-------+---------------------------+
+| 30a1008b-2469-4456-bff9-41ace775d892 | L3 agent           | controller | nova              | :-)   | UP    | neutron-l3-agent          |
+| 4e4254f3-3263-463c-91b3-b00bb47b9d07 | Linux bridge agent | controller | None              | :-)   | UP    | neutron-linuxbridge-agent |
+| 8cbe64ab-a0a1-43c6-86cd-9b99aeab8a17 | DHCP agent         | controller | nova              | :-)   | UP    | neutron-dhcp-agent        |
+| 962ebf06-160f-4a01-bf9d-4e1ec7628ea1 | Metadata agent     | controller | None              | :-)   | UP    | neutron-metadata-agent    |
++--------------------------------------+--------------------+------------+-------------------+-------+-------+---------------------------+
+```
 
 
 Neutron部署 - 计算节点
