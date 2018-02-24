@@ -229,3 +229,119 @@ vncserver_proxyclient_address = $my_ip
 +----+------------------+------------+----------+---------+-------+----------------------------+
 ```
 
+
+## Nova部署 - 计算节点
+
+安装nova-compute组件
+> apt install nova-compute
+
+编辑nova配置
+> /etc/nova/nova.conf
+
+```bash
+[DEFAULT]
+# log_dir = /var/log/nova
+lock_path = /var/lock/nova
+state_path = /var/lib/nova
+transport_url = rabbit://openstack:asd@192.168.1.11
+my_ip = 192.168.1.21
+use_neutron = True
+firewall_driver = nova.virt.firewall.NoopFirewallDriver
+
+[api]
+auth_strategy = keystone
+
+[api_database]
+connection = sqlite:////var/lib/nova/nova_api.sqlite
+[barbican]
+[cache]
+[cells]
+enable = False
+[cinder]
+[compute]
+[conductor]
+[console]
+[consoleauth]
+[cors]
+[crypto]
+[database]
+connection = sqlite:////var/lib/nova/nova.sqlite
+[ephemeral_storage_encryption]
+[filter_scheduler]
+
+[glance]
+api_servers = http://192.168.1.11:9292
+
+[guestfs]
+[healthcheck]
+[hyperv]
+[ironic]
+[key_manager]
+[keystone]
+
+[keystone_authtoken]
+auth_uri = http://192.168.1.11:5000
+auth_url = http://192.168.1.11:35357
+memcached_servers = 192.168.1.11:11211
+auth_type = password
+project_domain_name = default
+user_domain_name = default
+project_name = service
+username = nova
+password = asd
+
+[libvirt]
+[matchmaker_redis]
+[metrics]
+[mks]
+[neutron]
+[notifications]
+[osapi_v21]
+
+[oslo_concurrency]
+lock_path = /var/lib/nova/tmp
+
+[oslo_messaging_amqp]
+[oslo_messaging_kafka]
+[oslo_messaging_notifications]
+[oslo_messaging_rabbit]
+[oslo_messaging_zmq]
+[oslo_middleware]
+[oslo_policy]
+[pci]
+
+[placement]
+# os_region_name = openstack
+os_region_name = RegionOne
+project_domain_name = Default
+project_name = service
+auth_type = password
+user_domain_name = Default
+auth_url = http://192.168.1.11:35357/v3
+username = placement
+password = asd
+
+[quota]
+[rdp]
+[remote_debug]
+[scheduler]
+[serial_console]
+[service_user]
+[spice]
+[trusted_computing]
+[upgrade_levels]
+[vendordata_dynamic_auth]
+[vmware]
+
+[vnc]
+enabled = True
+vncserver_listen = 0.0.0.0
+vncserver_proxyclient_address = $my_ip
+novncproxy_base_url = http://192.168.1.11:6080/vnc_auto.html
+
+[workarounds]
+[wsgi]
+[xenserver]
+[xvp]
+
+```
