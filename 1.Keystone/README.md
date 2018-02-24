@@ -171,4 +171,48 @@ openstack --os-auth-url http://192.168.1.11:5000/v3 \
 
 配置环境变量脚本
 
+> vi admin-openrc
 
+```bash
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USER_DOMAIN_NAME=Default
+export OS_PROJECT_NAME=admin
+export OS_USERNAME=admin
+export OS_PASSWORD=asd
+export OS_AUTH_URL=http://192.168.1.11:35357/v3
+export OS_IDENTITY_API_VERSION=3
+export OS_IMAGE_API_VERSION=2
+```
+
+> vi demo-openrc
+
+```bash
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_USER_DOMAIN_NAME=Default
+export OS_PROJECT_NAME=demo
+export OS_USERNAME=demo
+export OS_PASSWORD=asd
+export OS_AUTH_URL=http://192.168.1.11:5000/v3
+export OS_IDENTITY_API_VERSION=3
+export OS_IMAGE_API_VERSION=2
+```
+
+加载admin环境变量
+
+> . admin-openrc
+
+申请token
+
+> openstack token issue
+
+服务器返回结果如下:
+```
++------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Field      | Value                                                                                                                                                                                   |
++------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| expires    | 2018-02-24T13:35:23+0000                                                                                                                                                                |
+| id         | gAAAAABakVwL51zeofRTcXKf-ruS13hYvkyL2y2OuHWflihgXla5dHOcVCP8-edk39Adl9MsJkQBgl1yHLXy5qZDvv1XDAWZJjtJmYZrXXYwXt0M6QvZmGHDf84mkuIycfZ4nJMhWerrOpp5PVhkPuYCtMPMf0JsV-RlCgpYGfJ-Ayf4wfQ7hvc |
+| project_id | cf4ba4ae11124667a72c819a0ad99a3d                                                                                                                                                        |
+| user_id    | 2afa305829ff4ec58d0edbb7343a6fb4                                                                                                                                                        |
++------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+```
