@@ -83,6 +83,8 @@ keystone-manage bootstrap --bootstrap-password asd \
   --bootstrap-region-id RegionOne
 ```
 
+<br />
+
 **配置apache服务器**
 
 ---
