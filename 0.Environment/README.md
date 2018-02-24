@@ -151,4 +151,50 @@ character-set-server = utf8
 > mkdir -p /var/lib/etcd  
 > chown etcd:etcd /var/lib/etcd  
 
+下载编译源码
 
+```
+ETCD_VER=v3.2.7
+rm -rf /tmp/etcd && mkdir -p /tmp/etcd
+curl -L https://github.com/coreos/etcd/releases/download/${ETCD_VER}/etcd-${ETCD_VER}-linux-amd64.tar.gz -o /tmp/etcd-${ETCD_VER}-linux-amd64.tar.gz
+tar xzvf /tmp/etcd-${ETCD_VER}-linux-amd64.tar.gz -C /tmp/etcd --strip-components=1
+cp /tmp/etcd/etcd /usr/bin/etcd
+cp /tmp/etcd/etcdctl /usr/bin/etcdctl
+```
+
+创建并配置yml文件
+
+> vi /etc/etcd/etcd.conf.yml
+```
+name: controller
+data-dir: /var/lib/etcd
+initial-cluster-state: 'new'
+initial-cluster-token: 'etcd-cluster-01'
+initial-cluster: controller=http://192.168.1.11:2380
+initial-advertise-peer-urls: http://192.168.1.11:2380
+advertise-client-urls: http://10.0.0.11:2379
+listen-peer-urls: http://0.0.0.0:2380
+listen-client-urls: http://192.168.1.11:2379
+```
+
+创建配置服务文件
+> vi /lib/systemd/system/etcd.service
+```
+[Unit]
+After=network.target
+Description=etcd - highly-available key value store
+
+[Service]
+LimitNOFILE=65536
+Restart=on-failure
+Type=notify
+ExecStart=/usr/bin/etcd --config-file /etc/etcd/etcd.conf.yml
+User=etcd
+
+[Install]
+WantedBy=multi-user.target
+```
+
+启用etcd服务
+> systemctl enable etcd
+> systemctl start etcd
