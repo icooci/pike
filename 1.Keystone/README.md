@@ -82,4 +82,24 @@ keystone-manage bootstrap --bootstrap-password asd \
   --bootstrap-public-url http://192.168.1.11:5000/v3/ \
   --bootstrap-region-id RegionOne
 ```
+配置apache服务器
 
+编辑apache2配置文件
+> /etc/apache2/apache2.conf
+
+```diff
++ ServerName 192.168.1.11
+```
+重启服务
+> service apache2 restart
+
+配置管理员账户
+```bash
+export OS_USERNAME=admin
+export OS_PASSWORD=asd
+export OS_PROJECT_NAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_AUTH_URL=http://192.168.1.11:35357/v3
+export OS_IDENTITY_API_VERSION=3
+```
