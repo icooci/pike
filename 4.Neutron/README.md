@@ -38,7 +38,7 @@ EXIT;
 > apt install neutron-server neutron-plugin-ml2 neutron-linuxbridge-agent neutron-l3-agent neutron-dhcp-agent neutron-metadata-agent
 
 编辑neutron配置
-> /etc/neutron/neutron.conf
+> vi /etc/neutron/neutron.conf
 
 ```bash
 [DEFAULT]
@@ -156,6 +156,38 @@ enable_isolated_metadata = true
 [ovs]
 ```
 
+---
 
+<br />
 
+编辑metadata配置
+> vi /etc/neutron/metadata_agent.ini
+```
+[DEFAULT]
+nova_metadata_host = 192.168.1.11
+metadata_proxy_shared_secret = asd
+[agent]
+[cache]
+```
 
+修改nova配置
+> vi /etc/nova/nova.conf
+
+```bash
+..+
+[neutron]
+url = http://192.168.1.11:9696
+auth_url = http://192.168.1.11:35357
+auth_type = password
+project_domain_name = default
+user_domain_name = default
+region_name = RegionOne
+project_name = service
+username = neutron
+password = asd
+service_metadata_proxy = true
+metadata_proxy_shared_secret = asd
+```
+
+初始化neutron数据库
+> su -s /bin/sh -c "neutron-db-manage --config-file /etc/neutron/neutron.conf --config-file /etc/neutron/plugins/ml2/ml2_conf.ini upgrade head" neutron
