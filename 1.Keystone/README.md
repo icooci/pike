@@ -1,4 +1,4 @@
-Keystone部署
+## Keystone部署
 
 创建keystone数据库
 
@@ -82,7 +82,9 @@ keystone-manage bootstrap --bootstrap-password asd \
   --bootstrap-public-url http://192.168.1.11:5000/v3/ \
   --bootstrap-region-id RegionOne
 ```
+
 配置apache服务器
+---
 
 编辑apache2配置文件
 > /etc/apache2/apache2.conf
