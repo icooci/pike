@@ -46,7 +46,7 @@ EXIT;
 创建placement用户
 > openstack user create --domain default --password-prompt placement
 
-为nova用户分配admin角色
+为placement用户分配admin角色
 
 > openstack role add --project service --user placement admin  
 > `本条命令无回显`
@@ -353,7 +353,7 @@ novncproxy_base_url = http://192.168.1.11:6080/vnc_auto.html
 
 ```
 
-> `$my_ip 为计算节点IP`
+> `$my_ip 为计算节点管理接口IP`
 
 重启nova-compute服务
 > service nova-compute restart
