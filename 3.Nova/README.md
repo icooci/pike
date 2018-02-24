@@ -48,7 +48,7 @@ EXIT;
 
 为nova用户分配admin角色
 
-> openstack role add --project service --user placement admin
+> openstack role add --project service --user placement admin  
 > `本条命令无回显`
 
 创建placement服务实体
@@ -183,7 +183,7 @@ vncserver_proxyclient_address = $my_ip
 > su -s /bin/sh -c "nova-manage cell_v2 map_cell0" nova
 
 创建cell1
-> su -s /bin/sh -c "nova-manage cell_v2 create_cell --name=cell1 --verbose" nova
+> su -s /bin/sh -c "nova-manage cell_v2 create_cell --name=cell1 --verbose" nova  
 > `50bc21e9-ca2f-45c9-b5d4-d3afa116eea8`
 
 初始化nova数据库
@@ -192,9 +192,31 @@ vncserver_proxyclient_address = $my_ip
 验证cell0和cell1已被正确注册
 > nova-manage cell_v2 list_cells
 
+```
++-------+--------------------------------------+--------------------------------------+---------------------------------------------------+
+|  Name |                 UUID                 |            Transport URL             |                Database Connection                |
++-------+--------------------------------------+--------------------------------------+---------------------------------------------------+
+| cell0 | 00000000-0000-0000-0000-000000000000 |                none:/                | mysql+pymysql://nova:****@192.168.1.11/nova_cell0 |
+| cell1 | 50bc21e9-ca2f-45c9-b5d4-d3afa116eea8 | rabbit://openstack:****@192.168.1.11 |    mysql+pymysql://nova:****@192.168.1.11/nova    |
++-------+--------------------------------------+--------------------------------------+---------------------------------------------------+
+```
+
 重启nova服务
-> service nova-api restart
-> service nova-consoleauth restart
-> service nova-scheduler restart
-> service nova-conductor restart
-# service nova-novncproxy restart
+> service nova-api restart  
+> service nova-consoleauth restart  
+> service nova-scheduler restart  
+> service nova-conductor restart  
+> service nova-novncproxy restart  
+
+验证操作
+---
+
+加载admin变量
+
+> . admin-openrc
+
+查询计算服务
+
+> openstack compute service list
+
+
