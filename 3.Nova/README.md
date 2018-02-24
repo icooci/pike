@@ -208,6 +208,8 @@ vncserver_proxyclient_address = $my_ip
 > service nova-conductor restart  
 > service nova-novncproxy restart  
 
+<br />
+
 验证操作
 ---
 
@@ -228,6 +230,10 @@ vncserver_proxyclient_address = $my_ip
 |  5 | nova-conductor   | controller | internal | enabled | up    | 2018-02-24T13:25:50.000000 |
 +----+------------------+------------+----------+---------+-------+----------------------------+
 ```
+
+<br />
+
+---
 
 <br />
 
@@ -388,6 +394,8 @@ Creating host mapping for compute host 'compute': 7f010bab-58f4-4f8d-ac21-dc9e9e
 [scheduler]
 discover_hosts_in_cells_interval = 300
 ```
+
+<br />
 
 验证操作
 ---
