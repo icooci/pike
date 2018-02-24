@@ -27,9 +27,9 @@ EXIT;
 
 创建neutron服务API Endpoint
 
-> openstack endpoint create --region RegionOne network public http://192.168.1.11:9696
-> openstack endpoint create --region RegionOne network internal http://192.168.1.11:9696
-> openstack endpoint create --region RegionOne network admin http://192.168.1.11:9696
+> openstack endpoint create --region RegionOne network public http://192.168.1.11:9696  
+> openstack endpoint create --region RegionOne network internal http://192.168.1.11:9696  
+> openstack endpoint create --region RegionOne network admin http://192.168.1.11:9696  
 
 
 
