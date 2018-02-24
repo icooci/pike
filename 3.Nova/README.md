@@ -236,7 +236,7 @@ vncserver_proxyclient_address = $my_ip
 > apt install nova-compute
 
 编辑nova配置
-> /etc/nova/nova.conf
+> vi /etc/nova/nova.conf
 
 ```bash
 [DEFAULT]
@@ -345,3 +345,25 @@ novncproxy_base_url = http://192.168.1.11:6080/vnc_auto.html
 [xvp]
 
 ```
+
+> `$my_ip 为计算节点IP`
+
+重启nova-compute服务
+> service nova-compute restart
+
+
+
+
+
+验证操作
+---
+
+在控制节点上进行验证操作
+
+加载admin变量
+
+> . admin-openrc
+
+查询计算服务
+
+openstack compute service list
