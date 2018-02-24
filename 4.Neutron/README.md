@@ -335,3 +335,16 @@ password = asd
 查看网络组件运行情况
 
 > openstack network agent list
+
+```
++--------------------------------------+--------------------+------------+-------------------+-------+-------+---------------------------+
+| ID                                   | Agent Type         | Host       | Availability Zone | Alive | State | Binary                    |
++--------------------------------------+--------------------+------------+-------------------+-------+-------+---------------------------+
+| 30a1008b-2469-4456-bff9-41ace775d892 | L3 agent           | controller | nova              | :-)   | UP    | neutron-l3-agent          |
+| 4e4254f3-3263-463c-91b3-b00bb47b9d07 | Linux bridge agent | controller | None              | :-)   | UP    | neutron-linuxbridge-agent |
+| 8cbe64ab-a0a1-43c6-86cd-9b99aeab8a17 | DHCP agent         | controller | nova              | :-)   | UP    | neutron-dhcp-agent        |
+| 962ebf06-160f-4a01-bf9d-4e1ec7628ea1 | Metadata agent     | controller | None              | :-)   | UP    | neutron-metadata-agent    |
+| f7533fbf-03b4-4230-85ef-a7ba5601f326 | Linux bridge agent | compute    | None              | :-)   | UP    | neutron-linuxbridge-agent |
++--------------------------------------+--------------------+------------+-------------------+-------+-------+---------------------------+
+
+```
