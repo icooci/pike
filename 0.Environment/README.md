@@ -172,7 +172,7 @@ initial-cluster-state: 'new'
 initial-cluster-token: 'etcd-cluster-01'
 initial-cluster: controller=http://192.168.1.11:2380
 initial-advertise-peer-urls: http://192.168.1.11:2380
-advertise-client-urls: http://10.0.0.11:2379
+advertise-client-urls: http://192.168.1.11:2379
 listen-peer-urls: http://0.0.0.0:2380
 listen-client-urls: http://192.168.1.11:2379
 ```
