@@ -83,7 +83,7 @@ controller / compute / block
 > apt install software-properties-common
 
 添加repository  
-> add-apt-repository cloud-archive:newton  
+> add-apt-repository cloud-archive:pike
 > [ENTER]
 
 更新软件包  
@@ -107,7 +107,7 @@ controller / compute / block
 bind-address = 192.168.1.11
 
 default-storage-engine = innodb
-innodb_file_per_table
+innodb_file_per_table = on
 max_connections = 4096
 collation-server = utf8_general_ci
 character-set-server = utf8
