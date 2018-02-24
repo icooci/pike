@@ -209,6 +209,7 @@ metadata_proxy_shared_secret = asd
 重启l3_agent服务
 > service neutron-l3-agent restart
 
+<br />
 
 验证操作
 ---
@@ -231,6 +232,11 @@ metadata_proxy_shared_secret = asd
 +--------------------------------------+--------------------+------------+-------------------+-------+-------+---------------------------+
 ```
 
+<br />
+
+---
+
+<br />
 
 Neutron部署 - 计算节点
 ---
@@ -323,10 +329,12 @@ password = asd
 重启neutron服务
 > service neutron-linuxbridge-agent restart
 
+<br />
+
 验证操作
 ---
 
-在控制节点上进行验证操作
+**在控制节点上进行验证操作**
 
 加载admin变量
 
