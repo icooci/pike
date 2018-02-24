@@ -29,7 +29,7 @@ EXIT;
 
 为nova用户分配admin角色
 
-> openstack role add --project service --user nova admin
+> openstack role add --project service --user nova admin  
 > `本条命令无回显`
 
 创建nova服务实体
@@ -43,6 +43,21 @@ EXIT;
 > openstack endpoint create --region RegionOne compute admin http://192.168.1.11:8774/v2.1  
 
 
+创建placement用户
+> openstack user create --domain default --password-prompt placement
+
+为nova用户分配admin角色
+
+> openstack role add --project service --user placement admin
+> `本条命令无回显`
+
+创建placement服务实体
+> openstack service create --name placement --description "Placement API" placement
+
+创建placement API Endpoint
+> openstack endpoint create --region RegionOne placement public http://192.168.1.11:8778  
+> openstack endpoint create --region RegionOne placement internal http://192.168.1.11:8778  
+> openstack endpoint create --region RegionOne placement admin http://192.168.1.11:8778  
 
 安装nova软件包
 
