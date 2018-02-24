@@ -71,5 +71,15 @@ provider = fernet
 > su -s /bin/sh -c "keystone-manage db_sync" keystone
 
 初始化Fernet Key库
-> keystone-manage fernet_setup --keystone-user keystone --keystone-group keystone
-> keystone-manage credential_setup --keystone-user keystone --keystone-group keystone
+> keystone-manage fernet_setup --keystone-user keystone --keystone-group keystone  
+> keystone-manage credential_setup --keystone-user keystone --keystone-group keystone  
+
+Bootstrap身份认证服务
+```
+keystone-manage bootstrap --bootstrap-password asd \
+  --bootstrap-admin-url http://192.168.1.11:35357/v3/ \
+  --bootstrap-internal-url http://192.168.1.11:5000/v3/ \
+  --bootstrap-public-url http://192.168.1.11:5000/v3/ \
+  --bootstrap-region-id RegionOne
+```
+
