@@ -173,3 +173,28 @@ vncserver_proxyclient_address = $my_ip
 
 ```
 
+> `$my_ip 为控制节点管理接口IP`
+
+初始化nova_api数据库
+
+> su -s /bin/sh -c "nova-manage api_db sync" nova
+
+注册cell0数据库
+> su -s /bin/sh -c "nova-manage cell_v2 map_cell0" nova
+
+创建cell1
+> su -s /bin/sh -c "nova-manage cell_v2 create_cell --name=cell1 --verbose" nova
+> `50bc21e9-ca2f-45c9-b5d4-d3afa116eea8`
+
+初始化nova数据库
+> su -s /bin/sh -c "nova-manage db sync" nova
+
+验证cell0和cell1已被正确注册
+> nova-manage cell_v2 list_cells
+
+重启nova服务
+> service nova-api restart
+> service nova-consoleauth restart
+> service nova-scheduler restart
+> service nova-conductor restart
+# service nova-novncproxy restart
