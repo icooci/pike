@@ -138,6 +138,7 @@ enable_vxlan = true
 local_ip = 192.168.1.11
 l2_population = true
 ```
+> `local_ip为用于overlay的控制节点接口IP`
 
 编辑l3_agent配置
 > vi /etc/neutron/l3_agent.ini
@@ -238,7 +239,7 @@ Neutron部署 - 计算节点
 
 > apt install neutron-linuxbridge-agent
 
-配置neutron
+编辑neutron配置
 
 > vi /etc/neutron/neutron.conf
 
@@ -278,4 +279,46 @@ password = asd
 [ssl]
 ```
 
+编辑linuxbridge_agent配置
+> vi /etc/neutron/plugins/ml2/linuxbridge_agent.ini
 
+```bash
+[DEFAULT]
+[agent]
+[linux_bridge]
+physical_interface_mappings = provider:ens3
+
+[securitygroup]
+enable_security_group = true
+firewall_driver = neutron.agent.linux.iptables_firewall.IptablesFirewallDriver
+
+[vxlan]
+enable_vxlan = true
+local_ip = 192.168.1.21
+l2_population = true
+
+```
+> `local_ip为用于overlay的计算节点接口IP`
+
+修改nova配置
+
+> vi /etc/nova/nova.conf
+```bash
+[neutron]
+# ...
+url = http://192.168.1.11:9696
+auth_url = http://192.168.1.11:35357
+auth_type = password
+project_domain_name = default
+user_domain_name = default
+region_name = RegionOne
+project_name = service
+username = neutron
+password = asd
+```
+
+重启nova-compute服务
+service nova-compute restart
+
+重启neutron服务
+service neutron-linuxbridge-agent restart
