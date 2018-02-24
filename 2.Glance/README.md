@@ -120,3 +120,44 @@ flavor = keystone
 
 [profiler]
 ```
+
+初始化glance数据库
+> su -s /bin/sh -c "glance-manage db_sync" glance
+
+重启glance服务
+
+> service glance-registry restart
+> service glance-api restart
+
+验证操作
+---
+
+加载admin变量
+
+> . admin-openrc
+
+获取cirros镜像
+
+> wget http://download.cirros-cloud.net/0.3.5/cirros-0.3.5-x86_64-disk.img
+
+上传cirros镜像至glance
+
+```
+openstack image create "cirros" \
+  --file cirros-0.3.5-x86_64-disk.img \
+  --disk-format qcow2 --container-format bare \
+  --public
+```
+
+查询镜像列表
+
+> openstack image list
+
+服务器返回结果如下:
+```
++--------------------------------------+--------+--------+
+| ID                                   | Name   | Status |
++--------------------------------------+--------+--------+
+| 1697f53d-bdfd-4220-95af-4a64ccf721ce | cirros | active |
++--------------------------------------+--------+--------+
+```
