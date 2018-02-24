@@ -219,4 +219,13 @@ vncserver_proxyclient_address = $my_ip
 
 > openstack compute service list
 
+```
++----+------------------+------------+----------+---------+-------+----------------------------+
+| ID | Binary           | Host       | Zone     | Status  | State | Updated At                 |
++----+------------------+------------+----------+---------+-------+----------------------------+
+|  3 | nova-scheduler   | controller | internal | enabled | up    | 2018-02-24T13:25:49.000000 |
+|  4 | nova-consoleauth | controller | internal | enabled | up    | 2018-02-24T13:25:49.000000 |
+|  5 | nova-conductor   | controller | internal | enabled | up    | 2018-02-24T13:25:50.000000 |
++----+------------------+------------+----------+---------+-------+----------------------------+
+```
 
