@@ -207,3 +207,65 @@ metadata_proxy_shared_secret = asd
 
 重启l3_agent服务
 > service neutron-l3-agent restart
+
+
+验证操作
+---
+
+加载admin变量
+
+> . admin-openrc
+
+查看网络组件运行情况
+
+> openstack network agent list
+
+
+Neutron部署 - 计算节点
+---
+
+安装neutron linuxbridge组件
+
+> apt install neutron-linuxbridge-agent
+
+配置neutron
+
+> vi /etc/neutron/neutron.conf
+
+```bash
+[DEFAULT]
+core_plugin = ml2
+transport_url = rabbit://openstack:asd@192.168.1.11
+auth_strategy = keystone
+
+[agent]
+root_helper = sudo /usr/bin/neutron-rootwrap /etc/neutron/rootwrap.conf
+[cors]
+[database]
+# connection = sqlite:////var/lib/neutron/neutron.sqlite
+[keystone_authtoken]
+auth_uri = http://192.168.1.11:5000
+auth_url = http://192.168.1.11:35357
+memcached_servers = 192.168.1.11:11211
+auth_type = password
+project_domain_name = default
+user_domain_name = default
+project_name = service
+username = neutron
+password = asd
+
+[matchmaker_redis]
+[nova]
+[oslo_concurrency]
+[oslo_messaging_amqp]
+[oslo_messaging_kafka]
+[oslo_messaging_notifications]
+[oslo_messaging_rabbit]
+[oslo_messaging_zmq]
+[oslo_middleware]
+[oslo_policy]
+[quotas]
+[ssl]
+```
+
+
