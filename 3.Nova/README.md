@@ -353,8 +353,41 @@ novncproxy_base_url = http://192.168.1.11:6080/vnc_auto.html
 > service nova-compute restart
 
 
+**添加计算节点到cell数据库 (在控制节点上进行)**
 
+加载admin变量
+>. admin-openrc
 
+列出计算节点
+> openstack compute service list --service nova-compute
+
+```
++----+--------------+---------+------+---------+-------+----------------------------+
+| ID | Binary       | Host    | Zone | Status  | State | Updated At                 |
++----+--------------+---------+------+---------+-------+----------------------------+
+|  7 | nova-compute | compute | nova | enabled | up    | 2018-02-24T13:37:04.000000 |
++----+--------------+---------+------+---------+-------+----------------------------+
+```
+
+发现计算节点
+> su -s /bin/sh -c "nova-manage cell_v2 discover_hosts --verbose" nova
+
+```
+Found 2 cell mappings.
+Skipping cell0 since it does not contain hosts.
+Getting compute nodes from cell 'cell1': 50bc21e9-ca2f-45c9-b5d4-d3afa116eea8
+Found 1 unmapped computes in cell: 50bc21e9-ca2f-45c9-b5d4-d3afa116eea8
+Checking host mapping for compute host 'compute': 7f010bab-58f4-4f8d-ac21-dc9e9e5ccd09
+Creating host mapping for compute host 'compute': 7f010bab-58f4-4f8d-ac21-dc9e9e5ccd09
+```
+
+配置自动发现(可选)
+
+> vi /etc/nova/nova.conf
+```
+[scheduler]
+discover_hosts_in_cells_interval = 300
+```
 
 验证操作
 ---
@@ -367,4 +400,73 @@ novncproxy_base_url = http://192.168.1.11:6080/vnc_auto.html
 
 查询计算服务
 
-openstack compute service list
+> openstack compute service list
+
+```
++----+------------------+------------+----------+---------+-------+----------------------------+
+| ID | Binary           | Host       | Zone     | Status  | State | Updated At                 |
++----+------------------+------------+----------+---------+-------+----------------------------+
+|  3 | nova-scheduler   | controller | internal | enabled | up    | 2018-02-24T13:41:29.000000 |
+|  4 | nova-consoleauth | controller | internal | enabled | up    | 2018-02-24T13:41:30.000000 |
+|  5 | nova-conductor   | controller | internal | enabled | up    | 2018-02-24T13:41:30.000000 |
+|  7 | nova-compute     | compute    | nova     | enabled | up    | 2018-02-24T13:41:24.000000 |
++----+------------------+------------+----------+---------+-------+----------------------------+
+```
+
+查询API endpoints状态
+> openstack catalog list
+```
++-----------+-----------+-------------------------------------------+
+| Name      | Type      | Endpoints                                 |
++-----------+-----------+-------------------------------------------+
+| placement | placement | RegionOne                                 |
+|           |           |   admin: http://192.168.1.11:8778         |
+|           |           | RegionOne                                 |
+|           |           |   public: http://192.168.1.11:8778        |
+|           |           | RegionOne                                 |
+|           |           |   internal: http://192.168.1.11:8778      |
+|           |           |                                           |
+| glance    | image     | RegionOne                                 |
+|           |           |   public: http://192.168.1.11:9292        |
+|           |           | RegionOne                                 |
+|           |           |   admin: http://192.168.1.11:9292         |
+|           |           | RegionOne                                 |
+|           |           |   internal: http://192.168.1.11:9292      |
+|           |           |                                           |
+| nova      | compute   | RegionOne                                 |
+|           |           |   public: http://192.168.1.11:8774/v2.1   |
+|           |           | RegionOne                                 |
+|           |           |   internal: http://192.168.1.11:8774/v2.1 |
+|           |           | RegionOne                                 |
+|           |           |   admin: http://192.168.1.11:8774/v2.1    |
+|           |           |                                           |
+| keystone  | identity  | RegionOne                                 |
+|           |           |   public: http://192.168.1.11:5000/v3/    |
+|           |           | RegionOne                                 |
+|           |           |   admin: http://192.168.1.11:35357/v3/    |
+|           |           | RegionOne                                 |
+|           |           |   internal: http://192.168.1.11:5000/v3/  |
+|           |           |                                           |
++-----------+-----------+-------------------------------------------+
+```
+
+查询cells和placement API状态
+
+> nova-status upgrade check
+```
++---------------------------+
+| Upgrade Check Results     |
++---------------------------+
+| Check: Cells v2           |
+| Result: Success           |
+| Details: None             |
++---------------------------+
+| Check: Placement API      |
+| Result: Success           |
+| Details: None             |
++---------------------------+
+| Check: Resource Providers |
+| Result: Success           |
+| Details: None             |
++---------------------------+
+```
