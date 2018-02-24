@@ -108,3 +108,67 @@ export OS_PROJECT_DOMAIN_NAME=Default
 export OS_AUTH_URL=http://192.168.1.11:35357/v3
 export OS_IDENTITY_API_VERSION=3
 ```
+
+创建service项目，用于各项服务
+> openstack project create --domain default --description "Service Project" service
+
+创建demo项目，用于一般权限任务
+> openstack project create --domain default --description "Demo Project" demo
+
+创建demo用户
+> openstack user create --domain default --password-prompt demo
+
+创建user角色
+> openstack role create user
+
+赋予demo用户user角色
+> openstack role add --project demo --user demo user
+
+取消临时变量
+> unset OS_AUTH_URL OS_PASSWORD
+
+验证操作
+---
+
+使用admin用户请求token
+```
+openstack --os-auth-url http://192.168.1.11:35357/v3 \
+  --os-project-domain-name Default --os-user-domain-name Default \
+  --os-project-name admin --os-username admin token issue
+```
+
+服务器返回结果如下:
+```
++------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Field      | Value                                                                                                                                                                                   |
++------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| expires    | 2018-02-24T13:29:46+0000                                                                                                                                                                |
+| id         | gAAAAABakVq6QVSL41hxXIefptBk8UBPxdLwRqoN_5pA8tR2pM4ZJAtl8PtRoY1alCGJGUU68FCAT9OP1Z0PtcJvD2BYjh2xVfbbsMPviQ8sR7cCzdjQ8tAx3cAibHU1nMMCCYYrhft-YEzswPUX9ul98tX8MDTa-Tx6OVZPhCKq8McLJ7xeetI |
+| project_id | cf4ba4ae11124667a72c819a0ad99a3d                                                                                                                                                        |
+| user_id    | 2afa305829ff4ec58d0edbb7343a6fb4                                                                                                                                                        |
++------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+```
+
+
+使用demo用户请求token  
+```
+openstack --os-auth-url http://192.168.1.11:5000/v3 \
+  --os-project-domain-name Default --os-user-domain-name Default \
+  --os-project-name demo --os-username demo token issue
+```
+
+服务器返回结果如下:
+```
++------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Field      | Value                                                                                                                                                                                   |
++------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| expires    | 2018-02-24T13:31:05+0000                                                                                                                                                                |
+| id         | gAAAAABakVsJTtVEEhH3kriFhZ8zrwYmqaydvey2_lgy0kE7NTkX5yAcXqrcv8B6EnF-odLKTT5aVTyuNZpXFE9DNpTh-v2V-ToWI8s636XtH-owTt22KPgf6QP1Vn0Mo1qQZWuu1SdF6aLiEqKp93HSUESx_kHq8UouASTqYH4bQU2a9MkdyQo |
+| project_id | a58b699ddbbf44af897d416855389f7e                                                                                                                                                        |
+| user_id    | ee910ae96d5147e89877c1d3455c205d                                                                                                                                                        |
++------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+```
+
+配置环境变量脚本
+
+
