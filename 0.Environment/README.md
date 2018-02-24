@@ -83,7 +83,7 @@ controller / compute / block
 > apt install software-properties-common
 
 添加repository  
-> add-apt-repository cloud-archive:pike
+> add-apt-repository cloud-archive:pike  
 > [ENTER]
 
 更新软件包  
