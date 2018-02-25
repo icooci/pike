@@ -129,6 +129,8 @@ novncproxy_base_url = http://192.168.1.11:6080/vnc_auto.html
 
 > `$my_ip 为计算节点管理接口IP`
 
+<br />
+
 挂载目录(Optional)
 ---
 
@@ -144,9 +146,7 @@ novncproxy_base_url = http://192.168.1.11:6080/vnc_auto.html
 <file system>             <mount point>              <type>  <options>  <dump>  <pass>
 /zz/lib/nova/instances    /var/lib/nova/instances    none    bind       0       0
 ```
- 
----
-
+##  
 
 重启nova-compute服务
 > service nova-compute restart
