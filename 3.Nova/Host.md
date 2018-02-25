@@ -144,7 +144,7 @@ novncproxy_base_url = http://192.168.1.11:6080/vnc_auto.html
 <file system>             <mount point>              <type>  <options>  <dump>  <pass>
 /zz/lib/nova/instances    /var/lib/nova/instances    none    bind       0       0
 ```
-
+ 
 ---
 
 
