@@ -1,4 +1,4 @@
-# 全Console部署
+# All Console部署
 
 <br />
 
@@ -35,7 +35,7 @@ html5proxy_base_url = http://192.168.1.11:6082/spice_auto.html
 ---
 
 加载admin变量
-# . admin-openrc 
+> . admin-openrc 
 
 获取novnc console地址
 > nova get-vnc-console c1 novnc
@@ -66,3 +66,4 @@ html5proxy_base_url = http://192.168.1.11:6082/spice_auto.html
 | spice-html5 | http://192.168.1.11:6082/spice_auto.html?token=cab96294-b285-4bba-8bdf-332683e2a25a |
 +-------------+-------------------------------------------------------------------------------------+
 ```
+
