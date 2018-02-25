@@ -142,11 +142,12 @@ novncproxy_base_url = http://192.168.1.11:6080/vnc_auto.html
 > openstack compute service list --service nova-compute
 
 ```
-+----+--------------+---------+------+---------+-------+----------------------------+
-| ID | Binary       | Host    | Zone | Status  | State | Updated At                 |
-+----+--------------+---------+------+---------+-------+----------------------------+
-|  7 | nova-compute | compute | nova | enabled | up    | 2018-02-24T13:37:04.000000 |
-+----+--------------+---------+------+---------+-------+----------------------------+
++----+--------------+--------+------+---------+-------+----------------------------+
+| ID | Binary       | Host   | Zone | Status  | State | Updated At                 |
++----+--------------+--------+------+---------+-------+----------------------------+
+|  9 | nova-compute | icooci | nova | enabled | up    | 2018-02-25T10:02:36.000000 |
++----+--------------+--------+------+---------+-------+----------------------------+
+
 ```
 
 发现计算节点
@@ -155,10 +156,9 @@ novncproxy_base_url = http://192.168.1.11:6080/vnc_auto.html
 ```
 Found 2 cell mappings.
 Skipping cell0 since it does not contain hosts.
-Getting compute nodes from cell 'cell1': 50bc21e9-ca2f-45c9-b5d4-d3afa116eea8
-Found 1 unmapped computes in cell: 50bc21e9-ca2f-45c9-b5d4-d3afa116eea8
-Checking host mapping for compute host 'compute': 7f010bab-58f4-4f8d-ac21-dc9e9e5ccd09
-Creating host mapping for compute host 'compute': 7f010bab-58f4-4f8d-ac21-dc9e9e5ccd09
+Getting compute nodes from cell 'cell1': d1e414eb-65b4-4e8f-85aa-f32be26d89a6
+Found 0 unmapped computes in cell: d1e414eb-65b4-4e8f-85aa-f32be26d89a6
+
 ```
 
 <br />
@@ -290,9 +290,10 @@ password = asd
 | ID                                   | Agent Type         | Host       | Availability Zone | Alive | State | Binary                    |
 +--------------------------------------+--------------------+------------+-------------------+-------+-------+---------------------------+
 | 0a094afe-3db1-430d-83c2-0b45afd92f18 | L3 agent           | controller | nova              | :-)   | UP    | neutron-l3-agent          |
-| 0cbf8d07-60f7-49d9-a5a4-f5d72b8f5f9d | Linux bridge agent | icooci     | None              | :-)   | UP    | neutron-linuxbridge-agent |
 | 5c12abc5-48af-4714-98e7-60dd052a3aeb | DHCP agent         | controller | nova              | :-)   | UP    | neutron-dhcp-agent        |
 | db67083c-ad30-4ce4-bf13-2a7ac32122f9 | Linux bridge agent | controller | None              | :-)   | UP    | neutron-linuxbridge-agent |
 | ecb56a51-303e-43fe-b19b-8803a54c0ad5 | Metadata agent     | controller | None              | :-)   | UP    | neutron-metadata-agent    |
+| 0cbf8d07-60f7-49d9-a5a4-f5d72b8f5f9d | Linux bridge agent | icooci     | None              | :-)   | UP    | neutron-linuxbridge-agent |
 +--------------------------------------+--------------------+------------+-------------------+-------+-------+---------------------------+
+
 ```
