@@ -2,7 +2,7 @@
 
 
 **添加repository**  
-`Ubuntu 16.04默认版本为Mitaka`
+`Ubuntu 16.04 LTS 默认版本为 Mitaka`
 
 > apt install software-properties-common 
 
@@ -148,7 +148,6 @@ novncproxy_base_url = http://192.168.1.11:6080/vnc_auto.html
 +----+--------------+--------+------+---------+-------+----------------------------+
 |  9 | nova-compute | icooci | nova | enabled | up    | 2018-02-25T10:02:36.000000 |
 +----+--------------+--------+------+---------+-------+----------------------------+
-
 ```
 
 发现计算节点
@@ -159,7 +158,6 @@ Found 2 cell mappings.
 Skipping cell0 since it does not contain hosts.
 Getting compute nodes from cell 'cell1': d1e414eb-65b4-4e8f-85aa-f32be26d89a6
 Found 0 unmapped computes in cell: d1e414eb-65b4-4e8f-85aa-f32be26d89a6
-
 ```
 
 <br />
@@ -218,7 +216,7 @@ password = asd
 [DEFAULT]
 [agent]
 [linux_bridge]
-physical_interface_mappings = provider:ens3
+physical_interface_mappings = provider:eno1
 
 [securitygroup]
 enable_security_group = true
@@ -228,8 +226,8 @@ firewall_driver = neutron.agent.linux.iptables_firewall.IptablesFirewallDriver
 enable_vxlan = true
 local_ip = 192.168.1.10
 l2_population = true
-
 ```
+
 > `local_ip为用于overlay的计算节点接口IP`
 
 修改nova配置
@@ -296,5 +294,4 @@ password = asd
 | ecb56a51-303e-43fe-b19b-8803a54c0ad5 | Metadata agent     | controller | None              | :-)   | UP    | neutron-metadata-agent    |
 | 0cbf8d07-60f7-49d9-a5a4-f5d72b8f5f9d | Linux bridge agent | icooci     | None              | :-)   | UP    | neutron-linuxbridge-agent |
 +--------------------------------------+--------------------+------------+-------------------+-------+-------+---------------------------+
-
 ```
