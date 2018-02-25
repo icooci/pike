@@ -90,7 +90,7 @@ keystone-manage bootstrap --bootstrap-password asd \
 ---
 
 编辑apache2配置文件
-> /etc/apache2/apache2.conf
+> vi /etc/apache2/apache2.conf
 
 ```diff
 + ServerName 192.168.1.11
