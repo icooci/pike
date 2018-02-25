@@ -2,6 +2,7 @@
 
 
 **添加repository**  
+
 `Ubuntu 16.04 LTS 默认版本为 Mitaka`
 
 > apt install software-properties-common 
