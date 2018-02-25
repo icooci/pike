@@ -161,3 +161,9 @@ openstack image create "cirros" \
 | 1697f53d-bdfd-4220-95af-4a64ccf721ce | cirros | active |
 +--------------------------------------+--------+--------+
 ```
+
+Additional Operation
+---
+
+导入metadata
+> glance-manage db_load_metadefs
