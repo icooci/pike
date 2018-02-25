@@ -126,8 +126,8 @@ flavor = keystone
 
 重启glance服务
 
-> service glance-registry restart
-> service glance-api restart
+> service glance-registry restart  
+> service glance-api restart  
 
 验证操作
 ---
