@@ -68,11 +68,11 @@ html5proxy_base_url = http://192.168.1.11:6082/spice_auto.html
 ```
 
 
-![image](https://github.com/icooci/pike/blob/master/3.Nova/novnc.png)
+![image](https://github.com/icooci/pike/blob/master/3.Nova/Snapshot/novnc.png)
 
-![image](https://github.com/icooci/pike/blob/master/3.Nova/xvpviewer.png)
+![image](https://github.com/icooci/pike/blob/master/3.Nova/Snapshot/xvpviewer.png)
 
-![image](https://github.com/icooci/pike/blob/master/3.Nova/xvpviewer_win.png)
+![image](https://github.com/icooci/pike/blob/master/3.Nova/Snapshot/xvpviewer_win.png)
 
-![image](https://github.com/icooci/pike/blob/master/3.Nova/spice-html5.png)
+![image](https://github.com/icooci/pike/blob/master/3.Nova/Snapshot/spice-html5.png)
 
