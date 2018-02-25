@@ -1,15 +1,15 @@
 ## Host - 计算节点部署
 
 
-apt install software-properties-common
-
 添加repository
 
-add-apt-repository cloud-archive:pike
-[ENTER]
+> apt install software-properties-common 
+
+> add-apt-repository cloud-archive:pike  
+> [ENTER]  
 
 
-## Nova部署 - 计算节点
+## Nova部署
 
 安装nova-compute组件
 > apt install nova-compute
@@ -23,7 +23,7 @@ add-apt-repository cloud-archive:pike
 lock_path = /var/lock/nova
 state_path = /var/lib/nova
 transport_url = rabbit://openstack:asd@192.168.1.11
-my_ip = 192.168.1.21
+my_ip = 192.168.1.10
 use_neutron = True
 firewall_driver = nova.virt.firewall.NoopFirewallDriver
 
@@ -160,7 +160,7 @@ Creating host mapping for compute host 'compute': 7f010bab-58f4-4f8d-ac21-dc9e9e
 ```
 
 
-Neutron部署 - 计算节点
+Neutron部署
 ---
 
 安装neutron linuxbridge组件
@@ -222,7 +222,7 @@ firewall_driver = neutron.agent.linux.iptables_firewall.IptablesFirewallDriver
 
 [vxlan]
 enable_vxlan = true
-local_ip = 192.168.1.21
+local_ip = 192.168.1.10
 l2_population = true
 
 ```
@@ -252,3 +252,36 @@ password = asd
 > service neutron-linuxbridge-agent restart
 
 <br />
+
+验证操作
+---
+
+**在控制节点上进行验证操作**
+
+加载admin变量
+
+> . admin-openrc
+
+
+查询计算组件运行情况
+
+> openstack compute service list
+
+root@controller:~# openstack compute service list
++----+------------------+------------+----------+---------+-------+----------------------------+
+| ID | Binary           | Host       | Zone     | Status  | State | Updated At                 |
++----+------------------+------------+----------+---------+-------+----------------------------+
+|  5 | nova-conductor   | controller | internal | enabled | up    | 2018-02-25T09:45:11.000000 |
+|  7 | nova-scheduler   | controller | internal | enabled | up    | 2018-02-25T09:45:09.000000 |
+|  8 | nova-consoleauth | controller | internal | enabled | up    | 2018-02-25T09:45:11.000000 |
+|  9 | nova-compute     | icooci     | nova     | enabled | up    | 2018-02-25T09:45:11.000000 |
++----+------------------+------------+----------+---------+-------+----------------------------+
+
+
+
+查看网络组件运行情况
+
+
+> openstack network agent list
+
+
