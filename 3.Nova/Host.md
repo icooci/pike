@@ -129,6 +129,22 @@ novncproxy_base_url = http://192.168.1.11:6080/vnc_auto.html
 
 > `$my_ip 为计算节点管理接口IP`
 
+挂载目录
+---
+
+创建新目录
+> mkdir -p /zz/lib/nova/instances
+
+更改目录所有者
+> chown nova:nova /zz/lib/nova/ -R
+
+编辑fstab配置
+> vi /etc/fstab
+```
+> <file system> <mount point>   <type>  <options>       <dump>  <pass>
+/zz/lib/nova/instances    /var/lib/nova/instances    none   bind   0  0
+```
+
 重启nova-compute服务
 > service nova-compute restart
 
