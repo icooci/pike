@@ -1,6 +1,8 @@
 ## Neutron部署 - 控制节点
 
 创建neutron数据库
+> mysql
+
 ```
 CREATE DATABASE neutron;
 GRANT ALL PRIVILEGES ON neutron.* TO 'neutron'@'localhost' IDENTIFIED BY 'asd';
