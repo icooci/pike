@@ -1,7 +1,8 @@
 ## Host - 计算节点部署
 
 
-添加repository
+**添加repository**  
+`Ubuntu 16.04默认版本为Mitaka`
 
 > apt install software-properties-common 
 
