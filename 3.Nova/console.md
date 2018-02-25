@@ -3,6 +3,11 @@
 #### 控制节点配置
 ---
 
+---
+***
+---
+___
+
 安装console组件
 > apt install nova-novncproxy nova-xvpvncproxy nova-spiceproxy
 
