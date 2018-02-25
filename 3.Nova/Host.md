@@ -233,16 +233,15 @@ password = asd
 ---
 > vi /etc/rc.local 
 
-```bash
+```
 #!/bin/sh -e
 #
 # rc.local
-#
 
-ip link add phyi type veth peer name phyo
-ip link set dev phyi up
-ip link set dev phyo up
-brctl addif br1 phyi
+ip link add ico type veth peer name oci
+ip link set dev ico up
+ip link set dev oci up
+brctl addif br1 ico
 
 exit 0
 ```
@@ -256,7 +255,7 @@ exit 0
 [DEFAULT]
 [agent]
 [linux_bridge]
-physical_interface_mappings = provider:phyo
+physical_interface_mappings = provider:oci
 
 [securitygroup]
 enable_security_group = true
