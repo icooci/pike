@@ -21,7 +21,7 @@ EXIT;
 
 加载admin变量
 
-. admin-openrc
+. admin-openrc  
 
 创建nova用户
 
