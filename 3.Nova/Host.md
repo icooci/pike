@@ -229,6 +229,26 @@ password = asd
 [ssl]
 ```
 
+新增vnic用于映射(Optional)
+---
+> vi /etc/rc.local 
+
+```bash
+#!/bin/sh -e
+#
+# rc.local
+#
+
+ip link add phyi type veth peer name phyo
+ip link set dev phyi up
+ip link set dev phyo up
+brctl addif br1 phyi
+
+exit 0
+```
+ 
+---
+
 编辑linuxbridge_agent配置
 > vi /etc/neutron/plugins/ml2/linuxbridge_agent.ini
 
@@ -236,7 +256,7 @@ password = asd
 [DEFAULT]
 [agent]
 [linux_bridge]
-physical_interface_mappings = provider:eno1
+physical_interface_mappings = provider:phyo
 
 [securitygroup]
 enable_security_group = true
