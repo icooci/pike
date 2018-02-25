@@ -9,7 +9,8 @@
 > [ENTER]  
 
 
-## Nova部署
+nova-compute部署
+---
 
 安装nova-compute组件
 > apt install nova-compute
@@ -130,6 +131,7 @@ novncproxy_base_url = http://192.168.1.11:6080/vnc_auto.html
 重启nova-compute服务
 > service nova-compute restart
 
+<br />
 
 **添加计算节点到cell数据库 (在控制节点上进行)**
 
@@ -159,8 +161,9 @@ Checking host mapping for compute host 'compute': 7f010bab-58f4-4f8d-ac21-dc9e9e
 Creating host mapping for compute host 'compute': 7f010bab-58f4-4f8d-ac21-dc9e9e5ccd09
 ```
 
+<br />
 
-Neutron部署
+neutron-linuxbridge部署
 ---
 
 安装neutron linuxbridge组件
@@ -262,12 +265,11 @@ password = asd
 
 > . admin-openrc
 
-
 查询计算组件运行情况
 
 > openstack compute service list
 
-root@controller:~# openstack compute service list
+```
 +----+------------------+------------+----------+---------+-------+----------------------------+
 | ID | Binary           | Host       | Zone     | Status  | State | Updated At                 |
 +----+------------------+------------+----------+---------+-------+----------------------------+
@@ -276,11 +278,10 @@ root@controller:~# openstack compute service list
 |  8 | nova-consoleauth | controller | internal | enabled | up    | 2018-02-25T09:45:11.000000 |
 |  9 | nova-compute     | icooci     | nova     | enabled | up    | 2018-02-25T09:45:11.000000 |
 +----+------------------+------------+----------+---------+-------+----------------------------+
-
+```
 
 
 查看网络组件运行情况
-
 
 > openstack network agent list
 
