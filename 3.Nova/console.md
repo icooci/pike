@@ -11,7 +11,7 @@ ___
 安装console组件
 > apt install nova-novncproxy nova-xvpvncproxy nova-spiceproxy
 
-## 计算节点配置
+计算节点配置
 ---
 
 修改nova配置
