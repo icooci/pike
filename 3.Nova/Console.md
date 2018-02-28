@@ -76,3 +76,16 @@ html5proxy_base_url = http://192.168.1.11:6082/spice_auto.html
 
 ![image](https://github.com/icooci/pike/blob/master/3.Nova/Snapshot/spice-html5.png)
 
+
+## Horizon选择Console
+
+编辑Horizon配置
+
+> vi /etc/openstack-dashboard/local_settings.py 
+
+```bash
+# Set Console type:
+# valid options are "AUTO"(default), "VNC", "SPICE", "RDP", "SERIAL", "MKS"
+# or None. Set to None explicitly if you want to deactivate the console.
+CONSOLE_TYPE = "SPICE"
+```
